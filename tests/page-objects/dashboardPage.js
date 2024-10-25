@@ -19,7 +19,10 @@ class DashboardPage {
 
         console.log('Dashboard validation complete.');
     }
-
+    async validateVisualDashboardPage() {
+        console.log('Taking visual snapshot of the dashboard page');
+        await expect(this.page).toHaveScreenshot();
+    }
     async addItemToCart() {
         console.log('Pausing for 1 second to simulate user wait after login');
         await this.page.waitForTimeout(1000);

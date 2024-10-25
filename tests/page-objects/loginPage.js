@@ -1,3 +1,5 @@
+require('dotenv').config();
+const { expect } = require('@playwright/test');
 class LoginPage {
     constructor(page) {
       this.page = page;
@@ -8,16 +10,16 @@ class LoginPage {
   
     async navigate() {
       console.log('Navigating to login page');
-      await this.page.goto('https://www.saucedemo.com/');
+      await this.page.goto(process.env.BASE_URL);
       await this.page.waitForTimeout(500);
     }
   
     async login(username, password) {
-      console.log(`Typing username: ${username}`);
-      await this.page.type(this.usernameInput, username, {delay: 100});
+      console.log(`Typing username: ${process.env.USERID}`);
+      await this.page.type(this.usernameInput, process.env.USERID, {delay: 100});
       
       console.log('Typing password');
-      await this.page.type(this.passwordInput, password, {delay: 100});
+      await this.page.type(this.passwordInput, process.env.PASSWORD, {delay: 100});
       
       console.log('Pausing for 500ms before logging in');
       await this.page.waitForTimeout(500);
@@ -27,6 +29,11 @@ class LoginPage {
 
       console.log('Pausing for 500ms after login');
       await this.page.waitForTimeout(500);
+    }
+
+    async validateVisualLoginPage() {
+      console.log('Taking visual snapshot of the login page');
+      await expect(this.page).toHaveScreenshot();
     }
   }
   

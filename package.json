@@ -12,6 +12,7 @@
     "@types/node": "^22.7.9"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "playwright-ui-test-digitalskola": "file:"
   }
 }

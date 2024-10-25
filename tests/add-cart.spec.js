@@ -13,12 +13,15 @@ test.describe('SauceDemo E-commerce Flow using Page Object Model', () => {
 
     // Test steps
     await loginPage.navigate();
-    await loginPage.login('standard_user', 'secret_sauce');
+    await loginPage.validateVisualLoginPage();
+    await loginPage.login();
     
     await dashboardPage.validateDashboard();
+    await dashboardPage.validateVisualDashboardPage();
     await dashboardPage.addItemToCart();
     
     await dashboardPage.navigateToCart();
     await cartPage.validateItemInCart();
+    await cartPage.validateVisualCartPage();
   });
 });
